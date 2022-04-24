@@ -6,13 +6,14 @@ function nactiSeznamReceptu(){
     //vytvoreni div a class=recept
     let recept = document.createElement('div');
     recept.className='recept';
+    recept.setAttribute('data-index', i)
     recepty.appendChild(recept);
 
     //pridani onclick
     recept.addEventListener('click', zobrazRecept);
 
     
-        //vytvoreni div class=recept
+        //vytvoreni div class=recept-obrazek
         let receptObrazek =document.createElement('div');
         receptObrazek.className='recept-obrazek';
         recept.appendChild(receptObrazek);
@@ -36,8 +37,12 @@ function nactiSeznamReceptu(){
     i++  
 }
 
-function zobrazRecept(){
+function zobrazRecept(kliknutyRecept){
     console.log('Varis varim varime');
+    let indexKliknutehoReceptu = kliknutyRecept.target.getAttribute('data-index');
+    console.log(indexKliknutehoReceptu);
+    
+    
     
 }
 /*
