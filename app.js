@@ -33,12 +33,12 @@ function nactiSeznamReceptu(){
         nadpisReceptInfo.innerHTML= receptyConst[i].nadpis;
         receptInfo.appendChild(nadpisReceptInfo);
     
-    i++
-      
+    i++  
 }
 
 function zobrazRecept(){
     console.log('Varis varim varime');
+    
 }
 /*
 Co je za úkol v tomto projektu:
