@@ -1,6 +1,8 @@
 let recepty = document.querySelector('.recepty');
 let i = 0;
+
 receptyConst.forEach(nactiSeznamReceptu);
+zobrazRecept();
 
 function nactiSeznamReceptu(){
     //vytvoreni div a class=recept
@@ -56,12 +58,23 @@ function zobrazRecept(kliknutyRecept){
     document.querySelector('#recept-hodnoceni').innerHTML=receptyConst[indexKliknutehoReceptu].hodnoceni;    
     document.querySelector('#recept-nazev').innerHTML=receptyConst[indexKliknutehoReceptu].nadpis;    
     document.querySelector('#recept-popis').innerHTML=receptyConst[indexKliknutehoReceptu].popis;    
+
+    ulozVybranyrecept(indexKliknutehoReceptu)
 }
+
+function ulozVybranyrecept(a) {
+    localStorage.clear();
+    let vybranyRecept = receptyConst[a];
+    localStorage.vybranyRecept=JSON.stringify()
+
+    
+    }
+
 
 /*
 Co je za úkol v tomto projektu:
 
-1) Do prvku s id="recepty" vygeneruj z dat seznam všech receptů z naší "databáze".
+DONE 1) Do prvku s id="recepty" vygeneruj z dat seznam všech receptů z naší "databáze".
 HTML vzor, jak vygenerovaný recept vypadá, je zakomentovaný v index.html.
 
 2) Doplň hledání - v hlavičce odkomentuj pole pro hledání. Pri kliknutí na tlačítko Hledat
