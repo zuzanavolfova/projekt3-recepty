@@ -1,3 +1,33 @@
+let recepty = document.querySelector('.recepty');
+let i = 0;
+receptyConst.forEach(nactiSeznamReceptu);
+
+function nactiSeznamReceptu(){
+    //vytvoreni div a class=recept
+    let recept = document.createElement('div');
+    recept.className='recept';
+    recepty.appendChild(recept);
+    
+        //vytvoreni div class=recept
+        let receptObrazek =document.createElement('div');
+        receptObrazek.className='recept-obrazek';
+        recept.appendChild(receptObrazek);
+
+        //vytvoreni img v div class=recept-obrazek
+        let receptObrazekImg = document.createElement('img');
+        receptObrazekImg.src=receptyConst[i].img;
+        receptObrazekImg.alt="Obrazek";
+        receptObrazek.appendChild(receptObrazekImg);
+
+        //vytvoreni div class=recept-info
+        let receptInfo = document.createElement('div');
+        receptInfo.className="recept-info";
+        recept.appendChild(receptInfo);
+
+    i++
+      
+}
+
 /*
 Co je za úkol v tomto projektu:
 
