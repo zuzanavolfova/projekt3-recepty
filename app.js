@@ -24,6 +24,11 @@ function nactiSeznamReceptu(){
         receptInfo.className="recept-info";
         recept.appendChild(receptInfo);
 
+        //vytvoreni h3 v recept info
+        let nadpisReceptInfo = document.createElement('h3');
+        nadpisReceptInfo.innerHTML= receptyConst[i].nadpis;
+        receptInfo.appendChild(nadpisReceptInfo);
+    
     i++
       
 }
