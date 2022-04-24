@@ -6,34 +6,41 @@ function nactiSeznamReceptu(){
     //vytvoreni div a class=recept
     let recept = document.createElement('div');
     recept.className='recept';
-    recept.setAttribute('data-index', i)
     recepty.appendChild(recept);
 
     //pridani onclick
     recept.addEventListener('click', zobrazRecept);
-
+    recept.setAttribute('data-index', i)
     
         //vytvoreni div class=recept-obrazek
         let receptObrazek =document.createElement('div');
         receptObrazek.className='recept-obrazek';
+        receptObrazek.setAttribute('data-index', i)
         recept.appendChild(receptObrazek);
 
         //vytvoreni img v div class=recept-obrazek
         let receptObrazekImg = document.createElement('img');
         receptObrazekImg.src=receptyConst[i].img;
         receptObrazekImg.alt="Obrazek";
+        receptObrazekImg.setAttribute('data-index', i)
         receptObrazek.appendChild(receptObrazekImg);
 
         //vytvoreni div class=recept-info
         let receptInfo = document.createElement('div');
         receptInfo.className="recept-info";
+        receptInfo.setAttribute('data-index', i)
+
         recept.appendChild(receptInfo);
 
         //vytvoreni h3 v recept info
         let nadpisReceptInfo = document.createElement('h3');
         nadpisReceptInfo.innerHTML= receptyConst[i].nadpis;
+        nadpisReceptInfo.setAttribute('data-index', i)
+
         receptInfo.appendChild(nadpisReceptInfo);
     
+        
+
     i++  
 }
 
@@ -41,9 +48,9 @@ function zobrazRecept(kliknutyRecept){
     console.log('Varis varim varime');
     let indexKliknutehoReceptu = kliknutyRecept.target.getAttribute('data-index');
     console.log(indexKliknutehoReceptu);
-    
-    
-    
+
+
+    document.querySelector('#recept-foto').src=receptyConst[indexKliknutehoReceptu].img;   
 }
 /*
 Co je za úkol v tomto projektu:
