@@ -7,10 +7,11 @@ function nactiSeznamReceptu(){
     let recept = document.createElement('div');
     recept.className='recept';
     recepty.appendChild(recept);
+    
 
     //pridani onclick
     recept.addEventListener('click', zobrazRecept);
-    recept.setAttribute('data-index', i)
+    // recept.setAttribute('data-index', i)
     
         //vytvoreni div class=recept-obrazek
         let receptObrazek =document.createElement('div');
@@ -39,10 +40,9 @@ function nactiSeznamReceptu(){
 
         receptInfo.appendChild(nadpisReceptInfo);
     
-        
-
     i++  
 }
+
 
 function zobrazRecept(kliknutyRecept){
     console.log('Varis varim varime');
