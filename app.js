@@ -6,6 +6,8 @@ function nactiSeznamReceptu(){
     //vytvoreni div a class=recept
     let recept = document.createElement('div');
     recept.className='recept';
+    recept.setAttribute('data-index', i);
+
     recepty.appendChild(recept);
     
 
@@ -43,15 +45,19 @@ function nactiSeznamReceptu(){
     i++  
 }
 
-
 function zobrazRecept(kliknutyRecept){
     console.log('Varis varim varime');
     let indexKliknutehoReceptu = kliknutyRecept.target.getAttribute('data-index');
     console.log(indexKliknutehoReceptu);
 
 
-    document.querySelector('#recept-foto').src=receptyConst[indexKliknutehoReceptu].img;   
+    document.querySelector('#recept-foto').src=receptyConst[indexKliknutehoReceptu].img; 
+    document.querySelector('#recept-kategorie').innerHTML=receptyConst[indexKliknutehoReceptu].kategorie;
+    document.querySelector('#recept-hodnoceni').innerHTML=receptyConst[indexKliknutehoReceptu].hodnoceni;    
+    document.querySelector('#recept-nazev').innerHTML=receptyConst[indexKliknutehoReceptu].nadpis;    
+    document.querySelector('#recept-popis').innerHTML=receptyConst[indexKliknutehoReceptu].popis;    
 }
+
 /*
 Co je za úkol v tomto projektu:
 
@@ -65,7 +71,7 @@ by se měl seznam receptů vyfiltrovat podle hledaného slova.
 
 4) Doplň řazení receptů podle hodnocení.
 
-5) Na recepty v seznamu by mělo jít kliknout a na pravé polovině, se objeví detail receptu.
+DONE 5) Na recepty v seznamu by mělo jít kliknout a na pravé polovině, se objeví detail receptu.
 Doplň patričné údaje receptu do HTML prvků s ID recept-foto, recept-kategorie,
 recept-hodnoceni, recept-nazev, recept-popis.
 
