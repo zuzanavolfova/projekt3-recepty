@@ -5,6 +5,7 @@ receptyConst.forEach(function(current, index, array) { nactiSeznamReceptu(array)
 // nactiRecept();
 
 filtrKategorie();
+razeniHodnoceni();
 
 function nactiSeznamReceptu(array){
     //vytvoreni div a class=recept
@@ -99,11 +100,36 @@ function filtrKategorie(){
     vysledekKategorie.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
 }
 
-//razeni podle hodnotceni
+//razeni podle hodnoceni
+// function razeniHodnoceni(){
+//     let kategorieHodnoceni = document.querySelector("select[id=razeni]").value;
+    
+//     if (kategorieHodnoceni===1){
+//     receptyConst.sort(porovnej);
+//     function porovnej(cis1, cis2) {
+//         if(cis1.hodnoceni > cis2.hodnoceni) {
+//             return 1;
+//         } else {
+//             return -1;
+//         }
+//     };
 
-function razeniHodnoceni(){
-    vymazSeznamReceptu();
-}
+//     vymazSeznamReceptu();
+    
+//     indexReceptu=0;
+//     receptyConst.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
+
+//     } else if (kategorieHodnoceni===2){
+//         receptyConst.sort(porovnej);
+//         function porovnej(cis1, cis2) {
+//             if(cis1.hodnoceni < cis2.hodnoceni) {
+//                 return 1;
+//             } else {
+//                 return -1;
+//             }
+//         }
+//     }
+// }
 
 function vymazSeznamReceptu(){
     let recept = document.querySelectorAll('.recept');
