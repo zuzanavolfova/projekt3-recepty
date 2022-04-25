@@ -1,5 +1,5 @@
 let recepty = document.querySelector('.recepty');
-let i = 0;
+let indexReceptu = 0;
 
 receptyConst.forEach(function(current, index, array) { nactiSeznamReceptu(array); });
 // nactiRecept();
@@ -9,42 +9,41 @@ function nactiSeznamReceptu(array){
     
     let recept = document.createElement('div');
     recept.className='recept';
-    recept.setAttribute('data-index', i);
+    recept.setAttribute('data-index', indexReceptu);
 
     recepty.appendChild(recept);
 
     //pridani onclick
     recept.addEventListener('click', zobrazRecept);
-    // recept.setAttribute('data-index', i)
     
     //vytvoreni div class=recept-obrazek
     let receptObrazek =document.createElement('div');
     receptObrazek.className='recept-obrazek';
-    receptObrazek.setAttribute('data-index', i)
+    receptObrazek.setAttribute('data-index', indexReceptu)
     recept.appendChild(receptObrazek);
 
     //vytvoreni img v div class=recept-obrazek
     let receptObrazekImg = document.createElement('img');
-    receptObrazekImg.src=array[i].img;
+    receptObrazekImg.src=array[indexReceptu].img;
     receptObrazekImg.alt="Obrazek";
-    receptObrazekImg.setAttribute('data-index', i)
+    receptObrazekImg.setAttribute('data-index', indexReceptu)
     receptObrazek.appendChild(receptObrazekImg);
 
     //vytvoreni div class=recept-info
     let receptInfo = document.createElement('div');
     receptInfo.className="recept-info";
-    receptInfo.setAttribute('data-index', i)
+    receptInfo.setAttribute('data-index', indexReceptu)
 
     recept.appendChild(receptInfo);
 
     //vytvoreni h3 v recept info
     let nadpisReceptInfo = document.createElement('h3');
-    nadpisReceptInfo.innerHTML= array[i].nadpis;
-    nadpisReceptInfo.setAttribute('data-index', i)
+    nadpisReceptInfo.innerHTML= array[indexReceptu].nadpis;
+    nadpisReceptInfo.setAttribute('data-index', indexReceptu)
 
     receptInfo.appendChild(nadpisReceptInfo);
     
-    i++ 
+    indexReceptu++ 
 }
 
 function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
@@ -64,21 +63,18 @@ function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
 //hledani v receptech
 function zpracujHledani(){
     let hledaneSpojeni = document.querySelector("input[id=hledat]").value
-    console.log(hledaneSpojeni);   
 
     let vysledek=receptyConst.filter(function(jednotlivyRecept){
         let najit=jednotlivyRecept.nadpis.toLowerCase().includes(hledaneSpojeni);
         return najit;
     })
-    
-    console.log(vysledek);
-    
+        
     let recept = document.querySelectorAll('.recept');
 
     for (let i = 0; i<recept.length; i++){
         recepty.removeChild(recept[i]);
         }
-    i=0;
+    indexReceptu=0;
     vysledek.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
 }
 
