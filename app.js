@@ -17,39 +17,47 @@ function nactiSeznamReceptu(array){
     recept.addEventListener('click', zobrazRecept);
     
     //vytvoreni div class=recept-obrazek
-    let receptObrazek =document.createElement('div');
-    receptObrazek.className='recept-obrazek';
-    receptObrazek.setAttribute('data-index', indexReceptu)
+    let receptObrazek = vytvorDiv('recept-obrazek');
     recept.appendChild(receptObrazek);
 
     //vytvoreni img v div class=recept-obrazek
-    let receptObrazekImg = document.createElement('img');
-    receptObrazekImg.src=array[indexReceptu].img;
-    receptObrazekImg.alt="Obrazek";
-    receptObrazekImg.setAttribute('data-index', indexReceptu)
-    receptObrazek.appendChild(receptObrazekImg);
+    vytvorImgObrazek(array, receptObrazek);
 
     //vytvoreni div class=recept-info
-    let receptInfo = document.createElement('div');
-    receptInfo.className="recept-info";
-    receptInfo.setAttribute('data-index', indexReceptu)
-
+    let receptInfo = vytvorDiv('recept-info');
     recept.appendChild(receptInfo);
 
     //vytvoreni h3 v recept info
-    let nadpisReceptInfo = document.createElement('h3');
-    nadpisReceptInfo.innerHTML= array[indexReceptu].nadpis;
-    nadpisReceptInfo.setAttribute('data-index', indexReceptu)
-
+    let nadpisReceptInfo = vytvorTitleReceptInfo(array);
     receptInfo.appendChild(nadpisReceptInfo);
     
     indexReceptu++ 
 }
 
-function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
-    console.log('Varis varim varime');
-    indexKliknutehoReceptu = kliknutyRecept.target.getAttribute('data-index');
+function vytvorTitleReceptInfo(array) {
+    let nadpisReceptInfo = document.createElement('h3');
+    nadpisReceptInfo.innerHTML = array[indexReceptu].nadpis;
+    nadpisReceptInfo.setAttribute('data-index', indexReceptu);
+    return nadpisReceptInfo;
+}
 
+function vytvorImgObrazek(array, receptObrazek) {
+    let receptObrazekImg = document.createElement('img');
+    receptObrazekImg.src = array[indexReceptu].img;
+    receptObrazekImg.alt = "Obrazek";
+    receptObrazekImg.setAttribute('data-index', indexReceptu);
+    receptObrazek.appendChild(receptObrazekImg);
+}
+
+function vytvorDiv(className) {
+    let receptObrazek = document.createElement('div');
+    receptObrazek.className = className;
+    receptObrazek.setAttribute('data-index', indexReceptu);
+    return receptObrazek;
+}
+
+function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
+    indexKliknutehoReceptu = kliknutyRecept.target.getAttribute('data-index');
 
     document.querySelector('#recept-foto').src=receptyConst[indexKliknutehoReceptu].img; 
     document.querySelector('#recept-kategorie').innerHTML=receptyConst[indexKliknutehoReceptu].kategorie;
@@ -69,13 +77,28 @@ function zpracujHledani(){
         return najit;
     })
         
+    vymazSeznamReceptu();
+
+    indexReceptu=0;
+    vysledek.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
+}
+//filtrovani podle kategorie
+function filtrKaterogie(){
+    vymazSeznamReceptu();
+}
+
+//razeni podle hodnotceni
+
+function razeniHodnoceni(){
+    vymazSeznamReceptu();
+}
+
+function vymazSeznamReceptu(){
     let recept = document.querySelectorAll('.recept');
 
     for (let i = 0; i<recept.length; i++){
         recepty.removeChild(recept[i]);
-        }
-    indexReceptu=0;
-    vysledek.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
+    }
 }
 
 // function ulozVybranyRecept(indexKliknutehoReceptu) {
