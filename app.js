@@ -6,6 +6,7 @@ receptyConst.forEach(nactiSeznamReceptu);
 
 function nactiSeznamReceptu(){
     //vytvoreni div a class=recept
+    
     let recept = document.createElement('div');
     recept.className='recept';
     recept.setAttribute('data-index', i);
@@ -44,7 +45,7 @@ function nactiSeznamReceptu(){
 
         receptInfo.appendChild(nadpisReceptInfo);
     
-    i++  
+    i++ 
 }
 
 function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
@@ -70,8 +71,9 @@ let vysledek=receptyConst.filter(function(jednotlivyRecept){
 let najit=jednotlivyRecept.nadpis.toLowerCase().includes(hledaneSpojeni);
 return najit;
 })
-
 console.log(vysledek);
+i=0;
+vysledek.forEach(nactiSeznamReceptu());
 }
 
 // function ulozVybranyRecept(indexKliknutehoReceptu) {
