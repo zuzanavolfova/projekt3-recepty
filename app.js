@@ -3,6 +3,8 @@ let i = 0;
 
 receptyConst.forEach(nactiSeznamReceptu);
 zobrazRecept();
+nactirecept();
+
 
 function nactiSeznamReceptu(){
     //vytvoreni div a class=recept
@@ -47,9 +49,9 @@ function nactiSeznamReceptu(){
     i++  
 }
 
-function zobrazRecept(kliknutyRecept){
+function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
     console.log('Varis varim varime');
-    let indexKliknutehoReceptu = kliknutyRecept.target.getAttribute('data-index');
+    indexKliknutehoReceptu = kliknutyRecept.target.getAttribute('data-index');
     console.log(indexKliknutehoReceptu);
 
 
@@ -59,16 +61,26 @@ function zobrazRecept(kliknutyRecept){
     document.querySelector('#recept-nazev').innerHTML=receptyConst[indexKliknutehoReceptu].nadpis;    
     document.querySelector('#recept-popis').innerHTML=receptyConst[indexKliknutehoReceptu].popis;    
 
-    ulozVybranyrecept(indexKliknutehoReceptu)
+    ulozVybranyRecept(indexKliknutehoReceptu)
 }
 
-function ulozVybranyrecept(a) {
-    localStorage.clear();
-    let vybranyRecept = receptyConst[a];
-    localStorage.vybranyRecept=JSON.stringify()
 
+function ulozVybranyRecept(indexKliknutehoReceptu) {
+    localStorage.clear();
+    localStorage.indexKliknutehoReceptu=indexKliknutehoReceptu;
+}
+
+function nactirecept(){
     
-    }
+}
+// function ulozVybranyRecept(a) {
+//     localStorage.clear();
+//     localStorage.vybranyRecept =JSON.stringify(receptyConst[a]);
+// }
+
+// function zobrazReceptZlocalStorage(){
+//     JSON.parse(localStorage.vybranyRecept)
+// }
 
 
 /*
