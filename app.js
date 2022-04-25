@@ -73,7 +73,7 @@ return najit;
 })
 console.log(vysledek);
 i=0;
-vysledek.forEach(nactiSeznamReceptu());
+vysledek.forEach(nactiSeznamReceptu);
 }
 
 // function ulozVybranyRecept(indexKliknutehoReceptu) {
