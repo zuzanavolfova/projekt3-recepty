@@ -2,8 +2,7 @@ let recepty = document.querySelector('.recepty');
 let i = 0;
 
 receptyConst.forEach(nactiSeznamReceptu);
-zobrazRecept();
-nactirecept();
+nactiRecept();
 
 
 function nactiSeznamReceptu(){
@@ -52,7 +51,6 @@ function nactiSeznamReceptu(){
 function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
     console.log('Varis varim varime');
     indexKliknutehoReceptu = kliknutyRecept.target.getAttribute('data-index');
-    console.log(indexKliknutehoReceptu);
 
 
     document.querySelector('#recept-foto').src=receptyConst[indexKliknutehoReceptu].img; 
@@ -65,18 +63,33 @@ function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
 }
 
 
-function ulozVybranyRecept(indexKliknutehoReceptu) {
-    localStorage.clear();
-    localStorage.indexKliknutehoReceptu=indexKliknutehoReceptu;
-}
-
-function nactirecept(){
-    
-}
-// function ulozVybranyRecept(a) {
+// function ulozVybranyRecept(indexKliknutehoReceptu) {
 //     localStorage.clear();
-//     localStorage.vybranyRecept =JSON.stringify(receptyConst[a]);
+//     localStorage.indexKliknutehoReceptu=indexKliknutehoReceptu;
 // }
+
+function nactiRecept(vybranyRecept){
+     console.log('haf');
+     vybranyRecept = JSON.parse(vybranyRecept);
+     
+}   
+
+    // let x = localStorage.indexKliknutehoReceptu;
+    // console.log(x);
+
+    // document.querySelector('#recept-foto').src=receptyConst[x].img; 
+    // document.querySelector('#recept-kategorie').innerHTML=receptyConst[x].kategorie;
+    // document.querySelector('#recept-hodnoceni').innerHTML=receptyConst[x].hodnoceni;    
+    // document.querySelector('#recept-nazev').innerHTML=receptyConst[x].nadpis;    
+    // document.querySelector('#recept-popis').innerHTML=receptyConst[x].popis;  
+
+
+
+function ulozVybranyRecept(a) {
+    localStorage.clear();
+    localStorage.vybranyRecept =JSON.stringify(receptyConst[a]);
+    console.log(localStorage);
+}
 
 // function zobrazReceptZlocalStorage(){
 //     JSON.parse(localStorage.vybranyRecept)
