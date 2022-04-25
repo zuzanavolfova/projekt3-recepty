@@ -4,6 +4,8 @@ let indexReceptu = 0;
 receptyConst.forEach(function(current, index, array) { nactiSeznamReceptu(array); });
 // nactiRecept();
 
+filtrKategorie();
+
 function nactiSeznamReceptu(array){
     //vytvoreni div a class=recept
     
@@ -65,14 +67,14 @@ function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
     document.querySelector('#recept-nazev').innerHTML=receptyConst[indexKliknutehoReceptu].nadpis;    
     document.querySelector('#recept-popis').innerHTML=receptyConst[indexKliknutehoReceptu].popis;    
 
-    // ulozVybranyRecept(indexKliknutehoReceptu)
+    ulozVybranyRecept(indexKliknutehoReceptu);
 }
 
 //hledani v receptech
 function zpracujHledani(){
-    let hledaneSpojeni = document.querySelector("input[id=hledat]").value
+    let hledaneSpojeni = document.querySelector("input[id=hledat]").value;
 
-    let vysledek=receptyConst.filter(function(jednotlivyRecept){
+    let vysledekHledani=receptyConst.filter(function(jednotlivyRecept){
         let najit=jednotlivyRecept.nadpis.toLowerCase().includes(hledaneSpojeni);
         return najit;
     })
@@ -80,11 +82,23 @@ function zpracujHledani(){
     vymazSeznamReceptu();
 
     indexReceptu=0;
-    vysledek.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
+    vysledekHledani.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
 }
 //filtrovani podle kategorie
-function filtrKaterogie(){
+function filtrKategorie(){
+    
+    let kategorieFiltr = document.querySelector("select[id=kategorie]").value;
+
+    let vysledekKategorie=receptyConst.filter(function(jednotlivyRecept){
+        let najit=jednotlivyRecept.stitek.includes(kategorieFiltr);
+        return najit;
+    })
+        
     vymazSeznamReceptu();
+
+    indexReceptu=0;
+    vysledekKategorie.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
+
 }
 
 //razeni podle hodnotceni
@@ -103,36 +117,15 @@ function vymazSeznamReceptu(){
 
 // function ulozVybranyRecept(indexKliknutehoReceptu) {
 //     localStorage.clear();
-//     localStorage.indexKliknutehoReceptu=indexKliknutehoReceptu;
-// }
-
-function nactiRecept(vybranyRecept){
-    console.log('haf');
-    vybranyRecept = JSON.parse(vybranyRecept);
-     
-}   
-
-    // let x = localStorage.indexKliknutehoReceptu;
-    // console.log(x);
-
-    // document.querySelector('#recept-foto').src=receptyConst[x].img; 
-    // document.querySelector('#recept-kategorie').innerHTML=receptyConst[x].kategorie;
-    // document.querySelector('#recept-hodnoceni').innerHTML=receptyConst[x].hodnoceni;    
-    // document.querySelector('#recept-nazev').innerHTML=receptyConst[x].nadpis;    
-    // document.querySelector('#recept-popis').innerHTML=receptyConst[x].popis;  
-
-
-
-// function ulozVybranyRecept(a) {
-//     localStorage.clear();
-//     localStorage.vybranyRecept =JSON.stringify(receptyConst[a]);
+//     localStorage.vybranyRecept =JSON.stringify(receptyConst[indexKliknutehoReceptu]);
 //     console.log(localStorage);
 // }
 
-// function zobrazReceptZlocalStorage(){
-//     JSON.parse(localStorage.vybranyRecept)
-// }
+// function nactiRecept(vybranyRecept){
+//     let vybranyRecept=JSON.parse(vybranyRecept);
 
+//     console.log(vybranyRecept);
+// }
 
 /*
 Co je za úkol v tomto projektu:
