@@ -4,7 +4,6 @@ let i = 0;
 receptyConst.forEach(nactiSeznamReceptu);
 // nactiRecept();
 
-
 function nactiSeznamReceptu(){
     //vytvoreni div a class=recept
     let recept = document.createElement('div');
@@ -61,32 +60,24 @@ function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
 
     ulozVybranyRecept(indexKliknutehoReceptu)
 }
-seradit();
-function seradit(){
-    //vytvorim si pole s hodnotami hodnoceni a vlozim do nej hodnoty
-    let poleHodnoceni= [];
-    for (let i=0; i < receptyConst.length; i++) {
-        poleHodnoceni.push(receptyConst[i].hodnoceni)
-    }
-    console.log(poleHodnoceni);
 
+//hledani v receptech
+function hledani(){
+let hledaneSpojeni = document.querySelector("input[id=hledat]").value
+console.log(hledaneSpojeni);   
 
-    // let seradit = document.querySelector("select").value;
+let vysledek=receptyConst.filter(function(jednotlivyRecept){
+let najit=jednotlivyRecept.nadpis.toLowerCase().includes(hledaneSpojeni);
+return najit;
+})
 
-    // if (seradit===1) {
-    //     function porovnej()
-        
-    // } else {
-        
-    // }
+console.log(vysledek);
 }
-
-
 
 // function ulozVybranyRecept(indexKliknutehoReceptu) {
 //     localStorage.clear();
 //     localStorage.indexKliknutehoReceptu=indexKliknutehoReceptu;
-// }
+// // }
 
 // function nactiRecept(vybranyRecept){
 //      console.log('haf');
@@ -105,17 +96,15 @@ function seradit(){
 
 
 
-function ulozVybranyRecept(a) {
-    localStorage.clear();
-    localStorage.vybranyRecept =JSON.stringify(receptyConst[a]);
-    console.log(localStorage);
-}
+// function ulozVybranyRecept(a) {
+//     localStorage.clear();
+//     localStorage.vybranyRecept =JSON.stringify(receptyConst[a]);
+//     console.log(localStorage);
+// }
 
 // function zobrazReceptZlocalStorage(){
 //     JSON.parse(localStorage.vybranyRecept)
 // }
-
-
 
 
 /*
