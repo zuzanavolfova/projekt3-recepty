@@ -86,7 +86,6 @@ function zpracujHledani(){
 }
 //filtrovani podle kategorie
 function filtrKategorie(){
-    
     let kategorieFiltr = document.querySelector("select[id=kategorie]").value;
 
     let vysledekKategorie=receptyConst.filter(function(jednotlivyRecept){
@@ -98,7 +97,6 @@ function filtrKategorie(){
 
     indexReceptu=0;
     vysledekKategorie.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
-
 }
 
 //razeni podle hodnotceni
