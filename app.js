@@ -62,7 +62,7 @@ function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
 }
 
 //hledani v receptech
-function hledani(){
+function zpracujHledani(){
     let hledaneSpojeni = document.querySelector("input[id=hledat]").value
     console.log(hledaneSpojeni);   
 
@@ -79,7 +79,7 @@ function hledani(){
         recepty.removeChild(recept[i]);
         }
     i=0;
-    vysledek.forEach(function(current, index, array) { nactiSeznamReceptu(array); });
+    vysledek.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
 }
 
 // function ulozVybranyRecept(indexKliknutehoReceptu) {
