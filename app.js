@@ -69,7 +69,7 @@ function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
     document.querySelector('#recept-nazev').innerHTML=receptyConst[indexKliknutehoReceptu].nadpis;    
     document.querySelector('#recept-popis').innerHTML=receptyConst[indexKliknutehoReceptu].popis;    
 
-    ulozVybranyRecept(indexKliknutehoReceptu);
+    // ulozVybranyRecept(indexKliknutehoReceptu);
 }
 
 //hledani v receptech
