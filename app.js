@@ -5,7 +5,7 @@ receptyConst.forEach(function(current, index, array) { nactiSeznamReceptu(array)
 // nactiRecept();
 
 filtrKategorie();
-// razeniHodnoceni();
+razeniHodnoceni();
 zpracujHledani();
 
 function nactiSeznamReceptu(array){
@@ -127,7 +127,8 @@ function razeniHodnoceni(){
             } else {
                 return -1;
             }
-        }
+        };
+        console.log(receptyConst)
         vymazSeznamReceptu();
         indexReceptu=0;
         receptyConst.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
