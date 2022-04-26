@@ -5,7 +5,8 @@ receptyConst.forEach(function(current, index, array) { nactiSeznamReceptu(array)
 // nactiRecept();
 
 filtrKategorie();
-razeniHodnoceni();
+// razeniHodnoceni();
+zpracujHledani();
 
 function nactiSeznamReceptu(array){
     //vytvoreni div a class=recept
@@ -100,36 +101,38 @@ function filtrKategorie(){
     vysledekKategorie.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
 }
 
-//razeni podle hodnoceni
-// function razeniHodnoceni(){
-//     let kategorieHodnoceni = document.querySelector("select[id=razeni]").value;
-    
-//     if (kategorieHodnoceni===1){
-//     receptyConst.sort(porovnej);
-//     function porovnej(cis1, cis2) {
-//         if(cis1.hodnoceni > cis2.hodnoceni) {
-//             return 1;
-//         } else {
-//             return -1;
-//         }
-//     };
+// razeni podle hodnoceni
+function razeniHodnoceni(){
+    let kategorieHodnoceni = document.querySelector("select[id=razeni]").value;
 
-//     vymazSeznamReceptu();
-    
-//     indexReceptu=0;
-//     receptyConst.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
+    if (kategorieHodnoceni==1){
+    receptyConst.sort(porovnej);
+    function porovnej(obj1, obj2) {
+        if (obj1.hodnoceni < obj2.hodnoceni) {
+            return 1;
+        } else {
+            return -1;
+        }
+    };
+    console.log(receptyConst);
+    vymazSeznamReceptu();
+    indexReceptu=0;
+    receptyConst.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
 
-//     } else if (kategorieHodnoceni===2){
-//         receptyConst.sort(porovnej);
-//         function porovnej(cis1, cis2) {
-//             if(cis1.hodnoceni < cis2.hodnoceni) {
-//                 return 1;
-//             } else {
-//                 return -1;
-//             }
-//         }
-//     }
-// }
+    } else if (kategorieHodnoceni==2){
+        receptyConst.sort(porovnej);
+        function porovnej(obj1, obj2) {
+            if(obj1.hodnoceni > obj2.hodnoceni) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+        vymazSeznamReceptu();
+        indexReceptu=0;
+        receptyConst.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
+    }
+}
 
 function vymazSeznamReceptu(){
     let recept = document.querySelectorAll('.recept');

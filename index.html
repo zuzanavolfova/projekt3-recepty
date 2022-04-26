@@ -32,7 +32,7 @@
             <div class="kategorie">
                 
                 <label for="kategorie">Kategorie</label>
-                <select id="kategorie">
+                <select id="kategorie" onchange="filtrKategorie()">
                     <option value=""></option>
                     <option value="snidane">Snídaně</option>
                     <option value="hlavniJidlo">Hlavní jídlo</option>
@@ -43,7 +43,7 @@
             <div class="razeni">
                 
                 <label for="razeni">Seřadit</label>
-                <select id="razeni">
+                <select id="razeni" onchange="razeniHodnoceni()">
                     <option value=""></option>
                     <option value="1">Od nejlepších</option>
                     <option value="2">Od nejhorších</option>
