@@ -1,14 +1,14 @@
 let recepty = document.querySelector('.recepty');
 let indexReceptu = 0;
 
-let filterArray = [...receptyConst];
-
-receptyConst.forEach(function(current) { nactiSeznamReceptu(current); });
+receptyConst.forEach(function(current, index, array) { nactiSeznamReceptu(array); });
 // nactiRecept();
 
-aplikujFiltr();
+filtrKategorie();
+razeniHodnoceni();
+zpracujHledani();
 
-function nactiSeznamReceptu(element){
+function nactiSeznamReceptu(array){
     //vytvoreni div a class=recept
     
     let recept = document.createElement('div');
@@ -25,29 +25,29 @@ function nactiSeznamReceptu(element){
     recept.appendChild(receptObrazek);
 
     //vytvoreni img v div class=recept-obrazek
-    vytvorImgObrazek(element, receptObrazek);
+    vytvorImgObrazek(array, receptObrazek);
 
     //vytvoreni div class=recept-info
     let receptInfo = vytvorDiv('recept-info');
     recept.appendChild(receptInfo);
 
     //vytvoreni h3 v recept info
-    let nadpisReceptInfo = vytvorTitleReceptInfo(element);
+    let nadpisReceptInfo = vytvorTitleReceptInfo(array);
     receptInfo.appendChild(nadpisReceptInfo);
     
     indexReceptu++ 
 }
 
-function vytvorTitleReceptInfo(element) {
+function vytvorTitleReceptInfo(array) {
     let nadpisReceptInfo = document.createElement('h3');
-    nadpisReceptInfo.innerHTML = element.nadpis;
+    nadpisReceptInfo.innerHTML = array[indexReceptu].nadpis;
     nadpisReceptInfo.setAttribute('data-index', indexReceptu);
     return nadpisReceptInfo;
 }
 
-function vytvorImgObrazek(element, receptObrazek) {
+function vytvorImgObrazek(array, receptObrazek) {
     let receptObrazekImg = document.createElement('img');
-    receptObrazekImg.src = element.img;
+    receptObrazekImg.src = array[indexReceptu].img;
     receptObrazekImg.alt = "Obrazek";
     receptObrazekImg.setAttribute('data-index', indexReceptu);
     receptObrazek.appendChild(receptObrazekImg);
@@ -63,20 +63,20 @@ function vytvorDiv(className) {
 function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
     indexKliknutehoReceptu = kliknutyRecept.target.getAttribute('data-index');
 
-    document.querySelector('#recept-foto').src=filterArray[indexKliknutehoReceptu].img; 
-    document.querySelector('#recept-kategorie').innerHTML=filterArray[indexKliknutehoReceptu].kategorie;
-    document.querySelector('#recept-hodnoceni').innerHTML=filterArray[indexKliknutehoReceptu].hodnoceni;    
-    document.querySelector('#recept-nazev').innerHTML=filterArray[indexKliknutehoReceptu].nadpis;    
-    document.querySelector('#recept-popis').innerHTML=filterArray[indexKliknutehoReceptu].popis;    
+    document.querySelector('#recept-foto').src=receptyConst[indexKliknutehoReceptu].img; 
+    document.querySelector('#recept-kategorie').innerHTML=receptyConst[indexKliknutehoReceptu].kategorie;
+    document.querySelector('#recept-hodnoceni').innerHTML=receptyConst[indexKliknutehoReceptu].hodnoceni;    
+    document.querySelector('#recept-nazev').innerHTML=receptyConst[indexKliknutehoReceptu].nadpis;    
+    document.querySelector('#recept-popis').innerHTML=receptyConst[indexKliknutehoReceptu].popis;    
 
-    // ulozVybranyRecept(indexKliknutehoReceptu);
+    ulozVybranyRecept(indexKliknutehoReceptu);
 }
 
 //hledani v receptech
 function zpracujHledani(){
     let hledaneSpojeni = document.querySelector("input[id=hledat]").value;
 
-    filterArray=filterArray.filter(function(jednotlivyRecept){
+    let vysledekHledani=receptyConst.filter(function(jednotlivyRecept){
         let najit=jednotlivyRecept.nadpis.toLowerCase().includes(hledaneSpojeni);
         return najit;
     })
@@ -84,21 +84,13 @@ function zpracujHledani(){
     vymazSeznamReceptu();
 
     indexReceptu=0;
-    filterArray.forEach(function(current) { nactiSeznamReceptu(current); });
+    vysledekHledani.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
 }
-
 //filtrovani podle kategorie
-function aplikujFiltr(){
-    filterArray = [...receptyConst];
-    filtrKategorie();
-    zpracujHledani();
-    razeniHodnoceni();
-}
-
 function filtrKategorie(){
     let kategorieFiltr = document.querySelector("select[id=kategorie]").value;
 
-    filterArray=filterArray.filter(function(jednotlivyRecept){
+    let vysledekKategorie=receptyConst.filter(function(jednotlivyRecept){
         let najit=jednotlivyRecept.stitek.includes(kategorieFiltr);
         return najit;
     })
@@ -106,16 +98,15 @@ function filtrKategorie(){
     vymazSeznamReceptu();
 
     indexReceptu=0;
-    filterArray.forEach(function(current) { nactiSeznamReceptu(current); });
+    vysledekKategorie.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
 }
-
 
 // razeni podle hodnoceni
 function razeniHodnoceni(){
     let kategorieHodnoceni = document.querySelector("select[id=razeni]").value;
 
     if (kategorieHodnoceni==1){
-        filterArray.sort(porovnej);
+    receptyConst.sort(porovnej);
     function porovnej(obj1, obj2) {
         if (obj1.hodnoceni < obj2.hodnoceni) {
             return 1;
@@ -123,9 +114,13 @@ function razeniHodnoceni(){
             return -1;
         }
     };
+    console.log(receptyConst);
+    vymazSeznamReceptu();
+    indexReceptu=0;
+    receptyConst.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
 
     } else if (kategorieHodnoceni==2){
-        filterArray.sort(porovnej);
+        receptyConst.sort(porovnej);
         function porovnej(obj1, obj2) {
             if(obj1.hodnoceni > obj2.hodnoceni) {
                 return 1;
@@ -133,10 +128,11 @@ function razeniHodnoceni(){
                 return -1;
             }
         };
+        console.log(receptyConst)
+        vymazSeznamReceptu();
+        indexReceptu=0;
+        receptyConst.forEach(function(current, index, array) {nactiSeznamReceptu(array); });
     }
-    vymazSeznamReceptu();
-    indexReceptu=0;
-    filterArray.forEach(function(current) { nactiSeznamReceptu(current); });
 }
 
 function vymazSeznamReceptu(){

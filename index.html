@@ -25,14 +25,14 @@
                 <label for="hledat">Hledat</label>
                 <div class="hledani-skupina">
                     <input type="text" id="hledat" placeholder="Název receptu">
-                    <button onclick="zpracujHledani()">Hledat</button>
+                    <button onclick="aplikujFiltr()">Hledat</button>
                 </div>
                
             </div>
             <div class="kategorie">
                 
                 <label for="kategorie">Kategorie</label>
-                <select id="kategorie" onchange="filtrKategorie()">
+                <select id="kategorie" onchange="aplikujFiltr()">
                     <option value=""></option>
                     <option value="snidane">Snídaně</option>
                     <option value="hlavniJidlo">Hlavní jídlo</option>
@@ -43,7 +43,7 @@
             <div class="razeni">
                 
                 <label for="razeni">Seřadit</label>
-                <select id="razeni" onchange="razeniHodnoceni()">
+                <select id="razeni" onchange="aplikujFiltr()">
                     <option value=""></option>
                     <option value="1">Od nejlepších</option>
                     <option value="2">Od nejhorších</option>
