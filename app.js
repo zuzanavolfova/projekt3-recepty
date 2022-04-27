@@ -1,14 +1,12 @@
 let recepty = document.querySelector('.recepty');
 let indexReceptu = 0;
-
 let filterArray = [...receptyConst];
 
 receptyConst.forEach(function(current) { nactiSeznamReceptu(current); });
-// nactiRecept();
-
+nactiRecept(localStorage.indexA);
 aplikujFiltr();
 
-function nactiSeznamReceptu(element){
+function nactiSeznamReceptu(objekt){
     //vytvoreni div a class=recept
     
     let recept = document.createElement('div');
@@ -25,29 +23,29 @@ function nactiSeznamReceptu(element){
     recept.appendChild(receptObrazek);
 
     //vytvoreni img v div class=recept-obrazek
-    vytvorImgObrazek(element, receptObrazek);
+    vytvorImgObrazek(objekt, receptObrazek);
 
     //vytvoreni div class=recept-info
     let receptInfo = vytvorDiv('recept-info');
     recept.appendChild(receptInfo);
 
     //vytvoreni h3 v recept info
-    let nadpisReceptInfo = vytvorTitleReceptInfo(element);
+    let nadpisReceptInfo = vytvorTitleReceptInfo(objekt);
     receptInfo.appendChild(nadpisReceptInfo);
     
     indexReceptu++ 
 }
 
-function vytvorTitleReceptInfo(element) {
+function vytvorTitleReceptInfo(objekt) {
     let nadpisReceptInfo = document.createElement('h3');
-    nadpisReceptInfo.innerHTML = element.nadpis;
+    nadpisReceptInfo.innerHTML = objekt.nadpis;
     nadpisReceptInfo.setAttribute('data-index', indexReceptu);
     return nadpisReceptInfo;
 }
 
-function vytvorImgObrazek(element, receptObrazek) {
+function vytvorImgObrazek(objekt, receptObrazek) {
     let receptObrazekImg = document.createElement('img');
-    receptObrazekImg.src = element.img;
+    receptObrazekImg.src = objekt.img;
     receptObrazekImg.alt = "Obrazek";
     receptObrazekImg.setAttribute('data-index', indexReceptu);
     receptObrazek.appendChild(receptObrazekImg);
@@ -61,15 +59,20 @@ function vytvorDiv(className) {
 }
 
 function zobrazRecept(kliknutyRecept, indexKliknutehoReceptu){
+
     indexKliknutehoReceptu = kliknutyRecept.target.getAttribute('data-index');
 
-    document.querySelector('#recept-foto').src=filterArray[indexKliknutehoReceptu].img; 
-    document.querySelector('#recept-kategorie').innerHTML=filterArray[indexKliknutehoReceptu].kategorie;
-    document.querySelector('#recept-hodnoceni').innerHTML=filterArray[indexKliknutehoReceptu].hodnoceni;    
-    document.querySelector('#recept-nazev').innerHTML=filterArray[indexKliknutehoReceptu].nadpis;    
-    document.querySelector('#recept-popis').innerHTML=filterArray[indexKliknutehoReceptu].popis;    
+    nactiRecept(indexKliknutehoReceptu);    
 
-    // ulozVybranyRecept(indexKliknutehoReceptu);
+    ulozVybranyRecept(indexKliknutehoReceptu);
+}
+
+function nactiRecept(indexKliknutehoReceptu) {
+    document.querySelector('#recept-foto').src = filterArray[indexKliknutehoReceptu].img;
+    document.querySelector('#recept-kategorie').innerHTML = filterArray[indexKliknutehoReceptu].kategorie;
+    document.querySelector('#recept-hodnoceni').innerHTML = filterArray[indexKliknutehoReceptu].hodnoceni;
+    document.querySelector('#recept-nazev').innerHTML = filterArray[indexKliknutehoReceptu].nadpis;
+    document.querySelector('#recept-popis').innerHTML = filterArray[indexKliknutehoReceptu].popis;
 }
 
 //hledani v receptech
@@ -84,7 +87,7 @@ function zpracujHledani(){
     vymazSeznamReceptu();
 
     indexReceptu=0;
-    filterArray.forEach(function(current) { nactiSeznamReceptu(current); });
+    filterArray.forEach(function(current) {nactiSeznamReceptu(current);});
 }
 
 //filtrovani podle kategorie
@@ -108,7 +111,6 @@ function filtrKategorie(){
     indexReceptu=0;
     filterArray.forEach(function(current) { nactiSeznamReceptu(current); });
 }
-
 
 // razeni podle hodnoceni
 function razeniHodnoceni(){
@@ -147,17 +149,11 @@ function vymazSeznamReceptu(){
     }
 }
 
-// function ulozVybranyRecept(indexKliknutehoReceptu) {
-//     localStorage.clear();
-//     localStorage.vybranyRecept =JSON.stringify(receptyConst[indexKliknutehoReceptu]);
-//     console.log(localStorage);
-// }
+function ulozVybranyRecept(indexKliknutehoReceptu) {
+    localStorage.indexA = indexKliknutehoReceptu;
+}
 
-// function nactiRecept(vybranyRecept){
-//     let vybranyRecept=JSON.parse(vybranyRecept);
 
-//     console.log(vybranyRecept);
-// }
 
 /*
 Co je za úkol v tomto projektu:
@@ -165,16 +161,16 @@ Co je za úkol v tomto projektu:
 DONE 1) Do prvku s id="recepty" vygeneruj z dat seznam všech receptů z naší "databáze".
 HTML vzor, jak vygenerovaný recept vypadá, je zakomentovaný v index.html.
 
-2) Doplň hledání - v hlavičce odkomentuj pole pro hledání. Pri kliknutí na tlačítko Hledat
+DONE 2) Doplň hledání - v hlavičce odkomentuj pole pro hledání. Pri kliknutí na tlačítko Hledat
 by se měl seznam receptů vyfiltrovat podle hledaného slova.
 
-3) Doplň filtrovanání receptů podle kategorie.
+DONE 3) Doplň filtrovanání receptů podle kategorie.
 
-4) Doplň řazení receptů podle hodnocení.
+DONE 4) Doplň řazení receptů podle hodnocení.
 
 DONE 5) Na recepty v seznamu by mělo jít kliknout a na pravé polovině, se objeví detail receptu.
 Doplň patričné údaje receptu do HTML prvků s ID recept-foto, recept-kategorie,
 recept-hodnoceni, recept-nazev, recept-popis.
 
-6) Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
+DONE 6) Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
 */
